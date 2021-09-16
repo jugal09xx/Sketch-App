@@ -6,27 +6,30 @@ function Canvas() {
   const canvasContextRef = useRef(null)
   const [isDrawing, setIsDrawing] = useState(false)
 
+  const colors = [ "black", "yellow", "red" ]
+
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = window.innerWidth * 2;
     canvas.height = window.innerHeight * 2;
-    canvas.style.width = window.innerWidth;
-    canvas.style.height = window.innerHeight;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
 
     const canvasContext = canvas.getContext("2d")
     canvasContext.scale(2,2)
     canvasContext.lineCap = "round"
-    canvasContext.strokeStyle = "black"
+    canvasContext.strokeStyle = "red"
     canvasContext.lineWidth = 5
     canvasContextRef.current = canvasContext;
   },[])
   
   const draw = ({nativeEvent}) => {
     if(!isDrawing){
+      return
+    }
       const {offsetX,offsetY} = nativeEvent;
       canvasContextRef.current.lineTo(offsetX,offsetY)
       canvasContextRef.current.stroke()
-  }
   }
 
   const startInput = ({nativeEvent}) => {
@@ -37,12 +40,19 @@ function Canvas() {
   }
 
   const stopInput = () => {
-    canvasContextRef.closePath();
+    canvasContextRef.current.closePath();
     setIsDrawing(false)
+  }
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const canvasContext = canvas.getContext("2d")
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
   }
 
   return (
     <div>
+      <button onClick={clearCanvas}>Clear</button>
       <canvas
         onMouseMove={draw}
         onMouseDown={startInput}
