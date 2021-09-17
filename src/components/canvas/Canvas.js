@@ -6,8 +6,6 @@ function Canvas() {
   const canvasContextRef = useRef(null)
   const [isDrawing, setIsDrawing] = useState(false)
 
-  const colors = [ "black", "yellow", "red" ]
-
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = window.innerWidth * 2;
@@ -18,7 +16,7 @@ function Canvas() {
     const canvasContext = canvas.getContext("2d")
     canvasContext.scale(2,2)
     canvasContext.lineCap = "round"
-    canvasContext.strokeStyle = "red"
+    canvasContext.strokeStyle = "black"
     canvasContext.lineWidth = 5
     canvasContextRef.current = canvasContext;
   },[])
@@ -52,7 +50,9 @@ function Canvas() {
 
   return (
     <div>
-      <button onClick={clearCanvas}>Clear</button>
+      <div>
+        <button onClick={clearCanvas}>Clear </button><br/>
+      </div>
       <canvas
         onMouseMove={draw}
         onMouseDown={startInput}

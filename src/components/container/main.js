@@ -1,10 +1,11 @@
 import React from 'react'
-import Canvas from './Canvas';
+import Canvas from '../canvas/Canvas';
+import {Heading} from '@chakra-ui/react'
 
 function Main() {
   return (
     <div>
-      <h1>Hello from Container</h1>
+      <Heading>Hello from Container</Heading>
       <Canvas/>      
     </div>
   )
