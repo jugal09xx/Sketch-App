@@ -1,10 +1,12 @@
-import './App.css';
 import Main from './components/container/main'
+import { Box } from '@chakra-ui/react'
 
 function App() {
   return (
     <div className="App">
-      <Main/>
+      <Box m={4}>
+        <Main/>
+      </Box>
     </div>
   );
 }

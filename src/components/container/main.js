@@ -1,13 +1,15 @@
 import React from 'react'
 import Canvas from '../canvas/Canvas';
-import {Heading} from '@chakra-ui/react'
+import {Box,Heading,Center} from '@chakra-ui/react'
 
 function Main() {
   return (
-    <div>
-      <Heading>Hello from Container</Heading>
+    <Box p={0}>
+    <Center p={2}>
+      <Heading>React Drawing App</Heading>
+      </Center>
       <Canvas/>      
-    </div>
+    </Box>
   )
 }
 
